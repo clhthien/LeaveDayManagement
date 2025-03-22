@@ -1,5 +1,6 @@
 package APlus.LeaveDayManagement.service.impl;
 
+import APlus.LeaveDayManagement.model.User;
 import APlus.LeaveDayManagement.repository.UserRepository;
 import APlus.LeaveDayManagement.response.ApiResponse;
 import APlus.LeaveDayManagement.response.UserDTO.UserDTO;
@@ -18,5 +19,13 @@ public class UserService implements IUserService {
     @Override
     public ApiResponse addUser(UserDTO request) {
         return null;
+    }
+
+    @Override
+    public ApiResponse viewUser(Long id) {
+
+
+        return null;
+
     }
 }

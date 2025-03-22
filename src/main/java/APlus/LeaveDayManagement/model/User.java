@@ -24,5 +24,6 @@ public class User {
     String password;
     String role;
     int leaveDays;
+
     List<Long> mangerIds;
 }
