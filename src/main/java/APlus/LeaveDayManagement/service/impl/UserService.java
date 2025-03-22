@@ -1,7 +1,6 @@
 package APlus.LeaveDayManagement.service.impl;
 
 import APlus.LeaveDayManagement.exception.OurException;
-import APlus.LeaveDayManagement.mapper.UserMapper;
 import APlus.LeaveDayManagement.model.User;
 import APlus.LeaveDayManagement.repository.UserRepository;
 import APlus.LeaveDayManagement.response.ApiResponse;
@@ -39,23 +38,23 @@ public class UserService implements IUserService {
                     .name(user.getName())
                     .build();
 
-            return ApiResponse.<UserDTO>builder()
-                    .status(200)
-                    .message("User found")
-                    .data(userDTO)
-                    .build();
+            ApiResponse apiResponse = new ApiResponse();
+            apiResponse.setUserDTO(userDTO);
+            apiResponse.setStatus(200);
+            apiResponse.setMessage("User found");
+
+            return apiResponse;
 
         } catch (OurException e) {
-
-            return ApiResponse.builder()
-                    .status(404)
-                    .message(e.getMessage())
-                    .build();
+            ApiResponse apiResponse = new ApiResponse();
+            apiResponse.setStatus(404);
+            apiResponse.setMessage(e.getMessage());
+            return apiResponse;
         }
     }
 
     @Override
-    public ApiResponse<User> updateUser(UserDTO userDTO) {
+    public ApiResponse updateUser(UserDTO userDTO) {
         return null;
     }
 }
