@@ -85,7 +85,7 @@
         ```
 
 #### 4. View 1 User
-- **URL**: `DELETE users/view/{id}`
+- **URL**: `GET users/view/{id}`
 - **Description**: Xem 1 người dùng.
 - **Path variable**: long id
   - **Response**:
@@ -108,3 +108,35 @@
               "message": "User not found"     
             }
           ```
+
+#### 4. View All User
+- **URL**: `GET users/view`
+  - **Description**: Xem tất cả người dùng.
+      - **Response**:
+          - `200 OK`: View successfully.
+            ```json
+            {
+                "status": 200,
+                "message": "User found",
+                "userDTOList": [
+                    {
+                        "id": 1,
+                        "name": "Nguyen Cong Thanh",
+                        "email": "johndoe10@example.com",
+                        "password": null
+                    },
+                    {
+                        "id": 2,
+                        "name": "Andy",
+                        "email": "johndoe20@example.com",
+                        "password": null
+                    },
+                    {
+                        "id": 3,
+                        "name": "Nguyen Cong Thanh",
+                        "email": "johndoe30@example.com",
+                        "password": null
+                    }
+                ]
+            }
+            ```
