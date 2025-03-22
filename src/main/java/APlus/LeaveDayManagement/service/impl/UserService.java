@@ -25,7 +25,12 @@ public class UserService implements IUserService {
     public ApiResponse viewUser(Long id) {
 
 
-        return null;
 
+        return null;
+    }
+
+    @Override
+    public ApiResponse<User> updateUser(UserDTO userDTO) {
+        return null;
     }
 }
