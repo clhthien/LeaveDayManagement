@@ -6,6 +6,7 @@ import APlus.LeaveDayManagement.response.UserDTO.UserDTO;
 
 public interface IUserService {
     public ApiResponse addUser(UserDTO request);
-
     public ApiResponse updateUser(UserDTO userDTO);
+    public ApiResponse deleteUser(long id);
+    public ApiResponse viewUser(Long id);
 }

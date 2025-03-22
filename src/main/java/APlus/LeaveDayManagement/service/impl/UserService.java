@@ -63,8 +63,52 @@ public class UserService implements IUserService {
         return response;
     }
 
-//    @Override
-//    public ApiResponse<User> updateUser(UserDTO userDTO) {
-//        return null;
-//    }
+    @Override
+    public ApiResponse deleteUser(long id) {
+        ApiResponse response = new ApiResponse();
+        try {
+            if (!userRepository.existsById(id)) {
+                throw new OurException("User not found");
+            }
+            userRepository.deleteById(id);
+
+            response.setStatus(200);
+            response.setMessage("User deleted successfully");
+        } catch (Exception e) {
+            response.setStatus(400);
+            response.setMessage(e.getMessage());
+        }
+        return response;
+    }
+
+    @Override
+    public ApiResponse viewUser(Long id) {
+
+        try {
+            User user = userRepository.findById(id).orElse(null);
+
+            if (user == null) {
+                throw new OurException("User not found");
+            }
+
+            UserDTO userDTO = UserDTO.builder()
+                    .id(user.getId())
+                    .email(user.getEmail())
+                    .name(user.getName())
+                    .build();
+
+            ApiResponse apiResponse = new ApiResponse();
+            apiResponse.setUserDTO(userDTO);
+            apiResponse.setStatus(200);
+            apiResponse.setMessage("User found");
+
+            return apiResponse;
+
+        } catch (OurException e) {
+            ApiResponse apiResponse = new ApiResponse();
+            apiResponse.setStatus(404);
+            apiResponse.setMessage(e.getMessage());
+            return apiResponse;
+        }
+    }
 }
