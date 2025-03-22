@@ -1,4 +1,4 @@
-package APlus.LeaveDayManagement.dto.UserDTO;
+package APlus.LeaveDayManagement.response.UserDTO;
 
 import lombok.Data;
 
