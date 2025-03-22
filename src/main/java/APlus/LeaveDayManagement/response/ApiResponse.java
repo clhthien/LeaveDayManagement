@@ -1,5 +1,6 @@
 package APlus.LeaveDayManagement.response;
 
+import APlus.LeaveDayManagement.model.User;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -9,4 +10,5 @@ import lombok.experimental.FieldDefaults;
 public class ApiResponse{
     int status;
     String message;
+    User user;
 }

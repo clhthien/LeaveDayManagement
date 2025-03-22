@@ -43,6 +43,26 @@ public class UserService implements IUserService {
         return response;
     }
 
+    @Override
+    public ApiResponse updateUser(UserDTO userDTO) {
+        ApiResponse response = new ApiResponse();
+        try{
+            User user = userRepository.findByEmail(userDTO.getEmail()).orElseThrow(() -> new OurException("User not found"));
+            if(userDTO.getName() != null) user.setName(userDTO.getName());
+            userRepository.save(user);
+            response.setStatus(200);
+            response.setMessage("Update user successfully");
+            response.setUser(user);
+        } catch (OurException e){
+            response.setStatus(404);
+            response.setMessage(e.getMessage());
+        } catch (Exception e) {
+            response.setStatus(500);
+            response.setMessage(e.getMessage());
+        }
+        return response;
+    }
+
 //    @Override
 //    public ApiResponse<User> updateUser(UserDTO userDTO) {
 //        return null;
