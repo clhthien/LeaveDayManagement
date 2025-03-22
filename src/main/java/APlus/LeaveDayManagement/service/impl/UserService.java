@@ -63,8 +63,21 @@ public class UserService implements IUserService {
         return response;
     }
 
-//    @Override
-//    public ApiResponse<User> updateUser(UserDTO userDTO) {
-//        return null;
-//    }
+    @Override
+    public ApiResponse deleteUser(long id) {
+        ApiResponse response = new ApiResponse();
+        try {
+            if (!userRepository.existsById(id)) {
+                throw new OurException("User not found");
+            }
+            userRepository.deleteById(id);
+
+            response.setStatus(200);
+            response.setMessage("User deleted successfully");
+        } catch (Exception e) {
+            response.setStatus(400);
+            response.setMessage(e.getMessage());
+        }
+        return response;
+    }
 }

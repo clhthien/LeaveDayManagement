@@ -26,4 +26,10 @@ public class UserController {
         ApiResponse response = userService.updateUser(userDTO);
         return ResponseEntity.status(response.getStatus()).body(response);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ApiResponse> deleteUser(@PathVariable long id){
+        ApiResponse response = userService.deleteUser(id);
+        return ResponseEntity.status(response.getStatus()).body(response);
+    }
 }
