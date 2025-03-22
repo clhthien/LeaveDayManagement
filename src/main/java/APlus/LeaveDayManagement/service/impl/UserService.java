@@ -37,7 +37,7 @@ public class UserService implements IUserService {
             response.setMessage("User added successfully");
 
         } catch (Exception e) {
-            response.setStatus(400);
+            response.setStatus(401);
             response.setMessage(e.getMessage());
         }
         return response;
@@ -75,7 +75,7 @@ public class UserService implements IUserService {
             response.setStatus(200);
             response.setMessage("User deleted successfully");
         } catch (Exception e) {
-            response.setStatus(400);
+            response.setStatus(404);
             response.setMessage(e.getMessage());
         }
         return response;
