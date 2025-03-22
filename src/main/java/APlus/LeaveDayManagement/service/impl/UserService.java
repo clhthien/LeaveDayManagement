@@ -52,9 +52,4 @@ public class UserService implements IUserService {
             return apiResponse;
         }
     }
-
-    @Override
-    public ApiResponse updateUser(UserDTO userDTO) {
-        return null;
-    }
 }
