@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
@@ -28,4 +29,9 @@ public class UserController {
         return ResponseEntity.status(response.getStatus()).body(response);
     }
 
+    @PutMapping("/update")
+    public ResponseEntity<ApiResponse> updateUser(@RequestBody UserDTO userDTO){
+        ApiResponse response = userService.updateUser(userDTO);
+        return ResponseEntity.status(response.getStatus()).body(response);
+    }
 }

@@ -2,6 +2,7 @@ package APlus.LeaveDayManagement.response;
 
 import APlus.LeaveDayManagement.response.UserDTO.UserDTO;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import APlus.LeaveDayManagement.model.User;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -14,5 +15,7 @@ public class ApiResponse{
     String message;
 
     UserDTO userDTO;
+
+    User user;
 
 }

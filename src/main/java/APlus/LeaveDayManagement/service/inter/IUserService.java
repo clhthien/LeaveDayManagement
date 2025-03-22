@@ -7,4 +7,5 @@ public interface IUserService {
     public ApiResponse addUser(UserDTO request);
 
     public ApiResponse viewUser(Long id);
+    public ApiResponse updateUser(UserDTO userDTO);
 }
