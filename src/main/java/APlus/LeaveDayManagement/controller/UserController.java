@@ -7,6 +7,7 @@ import APlus.LeaveDayManagement.service.inter.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private final IUserService userService;
 
+    @PostMapping("/add")
     public ResponseEntity<ApiResponse> addUser (UserDTO request) {
         ApiResponse response = userService.addUser(request);
         return ResponseEntity.status(response.getStatus()).body(response);

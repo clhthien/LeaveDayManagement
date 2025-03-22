@@ -10,3 +10,8 @@ spring:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: update
+
+server:
+  port: 8080
+  servlet:
+    context-path: /day-management
