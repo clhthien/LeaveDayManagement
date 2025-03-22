@@ -20,6 +20,7 @@ public class UserService implements IUserService {
 
     @Override
     public ApiResponse addUser(UserDTO request) {
+        ApiResponse response = new ApiResponse();
         try {
             if (userRepository.existsByEmail(request.getEmail())) {
                 throw new OurException("Email is already in use");
@@ -29,23 +30,21 @@ public class UserService implements IUserService {
             user.setEmail(request.getEmail());
             user.setName(request.getName());
             user.setPassword(request.getPassword());
-            user.setLeaveDays(request.getLeaveDays());
+//            user.setLeaveDays(request.getLeaveDays());
             userRepository.save(user);
 
-            return ApiResponse.builder()
-                    .status(200)
-                    .message("User added successfully")
-                    .build();
+            response.setStatus(200);
+            response.setMessage("User added successfully");
+
         } catch (Exception e) {
-            return ApiResponse.builder()
-                    .status(400)
-                    .message(e.getMessage())
-                    .build();
+            response.setStatus(400);
+            response.setMessage(e.getMessage());
         }
+        return response;
     }
 
-    @Override
-    public ApiResponse<User> updateUser(UserDTO userDTO) {
-        return null;
-    }
+//    @Override
+//    public ApiResponse<User> updateUser(UserDTO userDTO) {
+//        return null;
+//    }
 }
