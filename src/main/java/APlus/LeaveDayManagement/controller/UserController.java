@@ -32,4 +32,10 @@ public class UserController {
         ApiResponse response = userService.deleteUser(id);
         return ResponseEntity.status(response.getStatus()).body(response);
     }
+
+    @GetMapping("/view/{id}")
+    public ResponseEntity<ApiResponse> viewUser (@PathVariable long id) {
+        ApiResponse response = userService.viewUser(id);
+        return ResponseEntity.status(response.getStatus()).body(response);
+    }
 }

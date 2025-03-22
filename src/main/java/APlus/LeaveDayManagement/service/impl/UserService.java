@@ -80,4 +80,35 @@ public class UserService implements IUserService {
         }
         return response;
     }
+
+    @Override
+    public ApiResponse viewUser(Long id) {
+
+        try {
+            User user = userRepository.findById(id).orElse(null);
+
+            if (user == null) {
+                throw new OurException("User not found");
+            }
+
+            UserDTO userDTO = UserDTO.builder()
+                    .id(user.getId())
+                    .email(user.getEmail())
+                    .name(user.getName())
+                    .build();
+
+            ApiResponse apiResponse = new ApiResponse();
+            apiResponse.setUserDTO(userDTO);
+            apiResponse.setStatus(200);
+            apiResponse.setMessage("User found");
+
+            return apiResponse;
+
+        } catch (OurException e) {
+            ApiResponse apiResponse = new ApiResponse();
+            apiResponse.setStatus(404);
+            apiResponse.setMessage(e.getMessage());
+            return apiResponse;
+        }
+    }
 }

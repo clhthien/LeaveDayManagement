@@ -1,6 +1,7 @@
 package APlus.LeaveDayManagement.response;
 
 import APlus.LeaveDayManagement.model.User;
+import APlus.LeaveDayManagement.response.UserDTO.UserDTO;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -11,4 +12,5 @@ public class ApiResponse{
     int status;
     String message;
     User user;
+    UserDTO userDTO;
 }
