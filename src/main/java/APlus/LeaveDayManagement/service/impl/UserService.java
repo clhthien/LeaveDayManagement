@@ -44,6 +44,7 @@ public class UserService implements IUserService {
                     .message("User found")
                     .data(userDTO)
                     .build();
+
         } catch (OurException e) {
 
             return ApiResponse.builder()
