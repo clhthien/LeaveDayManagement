@@ -25,6 +25,7 @@ public class UserService implements IUserService {
                 throw new OurException("Email is already in use");
             }
             User user = new User();
+            user.setRole("EMPLOYEE");
             user.setEmail(request.getEmail());
             user.setName(request.getName());
             user.setPassword(request.getPassword());
