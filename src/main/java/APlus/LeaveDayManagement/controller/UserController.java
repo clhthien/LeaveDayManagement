@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,13 +19,13 @@ public class UserController {
     private final IUserService userService;
 
     @PostMapping("/add")
-    public ResponseEntity<ApiResponse> addUser (UserDTO request) {
+    public ResponseEntity<ApiResponse> addUser (@RequestBody UserDTO request) {
         ApiResponse response = userService.addUser(request);
         return ResponseEntity.status(response.getStatus()).body(response);
     }
 
-    public ResponseEntity<ApiResponse<User>> updateUser(UserDTO userDTO){
-        ApiResponse<User> response = userService.updateUser(userDTO);
-        return ResponseEntity.status(response.getStatus()).body(response);
-    }
+//    public ResponseEntity<ApiResponse<User>> updateUser(UserDTO userDTO){
+//        ApiResponse<User> response = userService.updateUser(userDTO);
+//        return ResponseEntity.status(response.getStatus()).body(response);
+//    }
 }
