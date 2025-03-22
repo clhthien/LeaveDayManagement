@@ -9,7 +9,12 @@ import APlus.LeaveDayManagement.service.inter.IUserService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -37,7 +42,7 @@ public class UserService implements IUserService {
             response.setMessage("User added successfully");
 
         } catch (Exception e) {
-            response.setStatus(400);
+            response.setStatus(401);
             response.setMessage(e.getMessage());
         }
         return response;
@@ -75,7 +80,7 @@ public class UserService implements IUserService {
             response.setStatus(200);
             response.setMessage("User deleted successfully");
         } catch (Exception e) {
-            response.setStatus(400);
+            response.setStatus(404);
             response.setMessage(e.getMessage());
         }
         return response;
@@ -110,5 +115,20 @@ public class UserService implements IUserService {
             apiResponse.setMessage(e.getMessage());
             return apiResponse;
         }
+    }
+
+    @Override
+    public ApiResponse viewAllUser(Pageable pageable) {
+        Page<User> users = userRepository.findAll(pageable);
+        List<UserDTO> userDTOList = users.getContent().stream()
+                .map(u -> new UserDTO(u.getId(), u.getName(), u.getEmail(), null))
+                .collect(Collectors.toList());
+
+        ApiResponse apiResponse = new ApiResponse();
+        apiResponse.setUserDTOList(userDTOList);
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("User found");
+
+        return apiResponse;
     }
 }
