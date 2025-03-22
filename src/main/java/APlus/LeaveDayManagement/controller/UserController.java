@@ -1,11 +1,11 @@
 package APlus.LeaveDayManagement.controller;
 
-import APlus.LeaveDayManagement.model.User;
 import APlus.LeaveDayManagement.response.ApiResponse;
 import APlus.LeaveDayManagement.response.UserDTO.UserDTO;
 import APlus.LeaveDayManagement.service.inter.IUserService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,8 +34,17 @@ public class UserController {
     }
 
     @GetMapping("/view/{id}")
-    public ResponseEntity<ApiResponse> viewUser (@PathVariable long id) {
+    public ResponseEntity<ApiResponse> viewUser(@PathVariable long id) {
         ApiResponse response = userService.viewUser(id);
+        return ResponseEntity.status(response.getStatus()).body(response);
+    }
+
+    @GetMapping("/view")
+    public ResponseEntity<ApiResponse> viewAllUser(
+            @RequestParam (defaultValue = "0") int page,
+            @RequestParam (defaultValue = "5") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        ApiResponse response = userService.viewAllUser(pageable);
         return ResponseEntity.status(response.getStatus()).body(response);
     }
 }
